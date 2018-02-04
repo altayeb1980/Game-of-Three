@@ -22,11 +22,11 @@ import com.takeaway.game.Game.GameStatus;
 public class GameService {
 	@Autowired
 	private GameRepository gameRepository;
-	private SecureRandom rand = new SecureRandom();
-	private int max = 100;
-	private int min = 1;
-	private AtomicLong resultAtomicNumber = new AtomicLong();
 
+	private SecureRandom rand = new SecureRandom();
+	private int min = 1;
+	private int max = 100;
+	private AtomicLong resultAtomicNumber = new AtomicLong();
 	private String operation = "0";
 
 	@PostConstruct
@@ -130,4 +130,10 @@ public class GameService {
 		game.setGameStatus(GameStatus.START);
 		return game;
 	}
+
+	public void setResultAtomicNumber(AtomicLong resultAtomicNumber) {
+		this.resultAtomicNumber = resultAtomicNumber;
+	}
+	
+	
 }

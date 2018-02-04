@@ -36,7 +36,5 @@ public class GameRepository {
 	public void clear() {
 		games.clear();
 	}
-	
-	
 
 }
