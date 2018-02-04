@@ -1,0 +1,5 @@
+com\takeaway\game\HelloMessage.class
+com\takeaway\game\Greeting.class
+com\takeaway\game\WebSocketConfig.class
+com\takeaway\game\GreetingController.class
+com\takeaway\game\Application.class
