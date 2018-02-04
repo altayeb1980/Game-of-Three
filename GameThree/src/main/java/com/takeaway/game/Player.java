@@ -1,12 +1,14 @@
 package com.takeaway.game;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Al-Tayeb_Saadeh
  *
  */
-public class Player {
-
+public class Player implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private long oldNumber;
 	private long resultNumber;
 	private final String name;

@@ -1,5 +1,10 @@
-com\takeaway\game\HelloMessage.class
-com\takeaway\game\Greeting.class
+com\takeaway\game\PlayerInput.class
+com\takeaway\game\GameService.class
+com\takeaway\game\Game$GameStatus.class
+com\takeaway\game\Player.class
 com\takeaway\game\WebSocketConfig.class
-com\takeaway\game\GreetingController.class
 com\takeaway\game\Application.class
+com\takeaway\game\GameController.class
+com\takeaway\game\GameNotFoundException.class
+com\takeaway\game\Game.class
+com\takeaway\game\GameRepository.class

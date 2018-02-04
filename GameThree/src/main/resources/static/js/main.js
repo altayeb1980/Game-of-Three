@@ -36,10 +36,12 @@ function connect() {
 
 function onConnected() {
 	var playerInput = {
-		playerName : playerName
+		playerName : playerName,
+		gameId : gameId
 	};
+
 	stompClient.subscribe('/topic/game', initGame);
-	stompClient.send("/app/game.joinGame", {}, playerInput)
+	stompClient.send("/app/game.joinGame", {}, JSON.stringify(playerInput));
 	$('.connecting').addClass('hidden');
 }
 

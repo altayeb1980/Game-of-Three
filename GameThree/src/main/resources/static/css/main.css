@@ -32,6 +32,24 @@ body:before {
     z-index: 0;
 }
 
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+#game-page .event-message {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+#game-page .event-message p {
+    color: #777;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
 
 .hidden {
     display: none;
