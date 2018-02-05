@@ -1,11 +1,13 @@
-                                                             Game of Three
+                                                    Game of Three
                   
 Requirements
+------------------------------------------------
 
 1. Java 1.8.x
 2. Maven 3.x.x
 
 Steps to Run
+------------------------------------------------
 
 Download the GameThree-1.0.0.jar from Game-of-Three/GameThree/target/ to your local folder
 
@@ -20,6 +22,8 @@ com.takeaway.game.Application            : Started Application in 5.067 seconds 
 
 
 Steps to Start Play
+------------------------------------------------
+
 
 Open two Browser and hit this URL in the two browsers:
 http://localhost:9090/
