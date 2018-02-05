@@ -179,7 +179,5 @@ public class GameService {
 		public String getOperation() {
 			return operation;
 		}
-
 	}
-
 }

@@ -46,10 +46,4 @@ public class GameController {
 	public Game startGame(PlayerInput playerInput) {
 		return gameService.startGame(playerInput);
 	}
-
-	// @MessageMapping(GAME_NOTIFY_PLAYER_JOIN_MAPPING)
-	// public void notifyPlayerJoint(String gameId) {
-	// Game game = gameService.getGameById(gameId);
-	// simpMessagingTemplate.convertAndSend(GAME_DESTINATION + "/" + gameId, game);
-	// }
 }

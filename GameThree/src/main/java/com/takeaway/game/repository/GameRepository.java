@@ -35,8 +35,4 @@ public class GameRepository {
 		return games.stream().filter(g -> g.getId().equals(gameId)).findFirst().orElse(null);
 	}
 
-	public void clear() {
-		games.clear();
-	}
-
 }
