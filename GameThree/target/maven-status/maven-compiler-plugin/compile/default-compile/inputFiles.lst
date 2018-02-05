@@ -1,9 +1,10 @@
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\GameNotFoundException.java
 C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\WebSocketConfig.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\GameRepository.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\PlayerInput.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\model\PlayerInput.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\service\GameService.java
 C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\Application.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\Player.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\GameController.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\GameService.java
-C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\Game.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\model\Game.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\model\Player.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\controller\GameController.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\exceptions\GameNotFoundException.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\exceptions\GameOperationException.java
+C:\Users\Al-Tayeb_Saadeh\git\Game-of-Three\GameThree\src\main\java\com\takeaway\game\repository\GameRepository.java

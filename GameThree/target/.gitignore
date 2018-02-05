@@ -1,2 +1,8 @@
 /classes/
 /test-classes/
+/generated-sources/
+/generated-test-sources/
+/maven-archiver/
+/maven-status/
+/surefire-reports/
+/**.original
