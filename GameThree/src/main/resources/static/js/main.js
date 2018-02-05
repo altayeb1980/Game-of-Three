@@ -49,6 +49,8 @@ function onErrorReceive(error) {
 	alert(error.body);
 	$('#send').hide();
 	$('#start').hide();
+	$('#playerNameForm').removeClass('hidden');
+	$('#game-page').addClass('hidden');
 }
 
 function play() {
@@ -76,6 +78,13 @@ function onJoinGame(payload) {
 	} else if (game.gameStatus == 'FINISH') {
 		addConversation(game.content);
 		$('#send').hide();
+		disconnect();
+	}
+}
+
+function disconnect() {
+	if (stompClient !== null) {
+		stompClient.disconnect();
 	}
 }
 
@@ -115,7 +124,7 @@ function initGame(payload) {
 			$('#send').show();
 		}
 		stompClient.subscribe('/topic/game/' + gameId, onJoinGame);
-	} 
+	}
 }
 
 function addConversation(conversationText) {

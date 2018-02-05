@@ -29,11 +29,13 @@ public class GameRepository {
 	public Game getFirstOpenGame() {
 		return games.stream().filter(g -> g.isOpen()).findFirst().orElse(null);
 	}
-	
-	
 
 	public Game getGameById(String gameId) {
 		return games.stream().filter(g -> g.getId().equals(gameId)).findFirst().orElse(null);
+	}
+
+	public void clearGame() {
+		games.clear();
 	}
 
 }

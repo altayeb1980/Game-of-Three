@@ -27,6 +27,7 @@ import com.takeaway.game.repository.GameRepository;
 @Service
 public class GameService {
 	private static final int GAME_END_NUMBER = 1;
+	private static final int INITIAL_RESULT_ATOMIC_NUMBER = 0;
 
 	@Autowired
 	private GameRepository gameRepository;
@@ -34,7 +35,7 @@ public class GameService {
 	private final SecureRandom rand = new SecureRandom();
 	private final int min = 1;
 	private final int max = 100;
-	private AtomicLong resultAtomicNumber = new AtomicLong();
+	private AtomicLong resultAtomicNumber = new AtomicLong(INITIAL_RESULT_ATOMIC_NUMBER);
 
 	@PostConstruct
 	public void init() {
@@ -73,6 +74,8 @@ public class GameService {
 		game.setGameStatus(GameStatus.FINISH);
 		game.setContent(player.getName() + " WIN!!!. (" + operation + " to " + currentNumber + " = " + nextNumber + ")"
 				+ " with result number: " + resultNumber);
+		gameRepository.clearGame();
+		resultAtomicNumber.set(INITIAL_RESULT_ATOMIC_NUMBER);
 		return game;
 	}
 
