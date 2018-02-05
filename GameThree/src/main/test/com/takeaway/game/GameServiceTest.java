@@ -1,20 +1,20 @@
 package com.takeaway.game;
 
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.takeaway.game.model.Game;
-import com.takeaway.game.model.Player;
-import com.takeaway.game.model.PlayerInput;
 import com.takeaway.game.model.Game.GameStatus;
+import com.takeaway.game.model.PlayerInput;
 import com.takeaway.game.repository.GameRepository;
 import com.takeaway.game.service.GameService;
 
@@ -24,16 +24,23 @@ import com.takeaway.game.service.GameService;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GameServiceTest {
+public class GameServiceTest extends BaseGameTest {
 
 	@Mock
 	private GameRepository gameRepository;
+	@Mock
+	private AtomicLong resultAtomicNumber;
 
 	@InjectMocks
 	private GameService gameService;
 
 	private String player1Name = "altayeb";
 	private String player2Name = "emmy";
+
+	@Before
+	public void setup() {
+		Whitebox.setInternalState(gameService, "resultAtomicNumber", resultAtomicNumber);
+	}
 
 	@Test
 	public void TestJoinGame_WhenNoPlayerExitYet() {
@@ -73,46 +80,34 @@ public class GameServiceTest {
 	@Test
 	public void test_Player1Win() {
 		Game game = createGame(player1Name, player2Name);
+		resultAtomicNumber.set(4);
 		Mockito.when(gameRepository.getGameById(Mockito.any(String.class))).thenReturn(game);
-
 		PlayerInput playerInput = createPlayerInput(player1Name, game.getId());
-
-		gameService.setResultAtomicNumber(new AtomicLong(4));
-
 		Game actualGame = gameService.play(playerInput);
 		Assert.assertNotNull(actualGame);
-
 		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.FINISH.name());
 		Assert.assertEquals(actualGame.getPlayer1().getOldNumber(), 3);
 		Assert.assertEquals(actualGame.getPlayer1().getResultNumber(), 1);
-
 		String operation = "-1";
 		Assert.assertEquals(
 				player1Name + " WIN!!!. (" + operation + " to " + 4 + " = " + 3 + ")" + " with result number: " + 1,
 				actualGame.getContent());
-
 	}
 
 	@Test
 	public void test_Player2Win() {
 		Game game = createGame(player1Name, player2Name);
 		Mockito.when(gameRepository.getGameById(Mockito.any(String.class))).thenReturn(game);
-
 		PlayerInput playerInput = createPlayerInput(player1Name, game.getId());
-
-		gameService.setResultAtomicNumber(new AtomicLong(5));
-
+		resultAtomicNumber.set(7);
 		Game actualGame = gameService.play(playerInput);
 		Assert.assertNotNull(actualGame);
-
 		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.PLAY.name());
 		Assert.assertEquals(actualGame.getPlayer1().getOldNumber(), 6);
 		Assert.assertEquals(actualGame.getPlayer1().getResultNumber(), 2);
-
 		playerInput = createPlayerInput(player2Name, game.getId());
 		actualGame = gameService.play(playerInput);
 		Assert.assertNotNull(actualGame);
-
 		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.FINISH.name());
 		Assert.assertEquals(actualGame.getPlayer2().getOldNumber(), 3);
 		Assert.assertEquals(actualGame.getPlayer2().getResultNumber(), 1);
@@ -120,29 +115,6 @@ public class GameServiceTest {
 		Assert.assertEquals(
 				player2Name + " WIN!!!. (" + operation + " to " + 2 + " = " + 3 + ")" + " with result number: " + 1,
 				actualGame.getContent());
-
-	}
-	
-	
-
-	private Game createGame(String player1Name, String player2Name) {
-		Game game = new Game(UUID.randomUUID().toString());
-		Player player1 = new Player(player1Name);
-		game.setGameStatus(GameStatus.JOIN);
-		game.setPlayer1(player1);
-
-		Player player2 = new Player(player2Name);
-		game.setGameStatus(GameStatus.JOIN);
-		game.setPlayer2(player2);
-
-		return game;
-	}
-
-	private PlayerInput createPlayerInput(String playerName, String gameId) {
-		PlayerInput playerInput = new PlayerInput();
-		playerInput.setGameId(gameId);
-		playerInput.setPlayerName(playerName);
-		return playerInput;
 	}
 
 }
