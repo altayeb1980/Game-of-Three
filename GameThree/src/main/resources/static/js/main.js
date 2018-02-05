@@ -73,7 +73,7 @@ function onJoinGame(payload) {
 		if (game.currentPlayerName != playerName) {
 			$('#send').show();
 		}
-	} else if (game.gameStatus == 'WIN') {
+	} else if (game.gameStatus == 'FINISH') {
 		addConversation(game.content);
 		$('#send').hide();
 	}

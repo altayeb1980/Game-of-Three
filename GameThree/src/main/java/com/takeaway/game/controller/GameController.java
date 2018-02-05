@@ -1,10 +1,14 @@
-package com.takeaway.game;
+package com.takeaway.game.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+
+import com.takeaway.game.model.Game;
+import com.takeaway.game.model.PlayerInput;
+import com.takeaway.game.service.GameService;
 
 /**
  * 

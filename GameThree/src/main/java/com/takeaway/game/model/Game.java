@@ -1,4 +1,4 @@
-package com.takeaway.game;
+package com.takeaway.game.model;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ public class Game implements Serializable{
 	private GameStatus gameStatus;
 
 	public enum GameStatus {
-		WIN, JOIN, PLAY, START
+		FINISH, JOIN, PLAY, START
 	}
 
 	public String getContent() {

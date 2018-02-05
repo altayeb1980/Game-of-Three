@@ -1,9 +1,11 @@
-package com.takeaway.game;
+package com.takeaway.game.repository;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Repository;
+
+import com.takeaway.game.model.Game;
 
 /**
  * 

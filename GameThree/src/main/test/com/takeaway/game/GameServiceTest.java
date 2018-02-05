@@ -11,7 +11,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.takeaway.game.Game.GameStatus;
+import com.takeaway.game.model.Game;
+import com.takeaway.game.model.Player;
+import com.takeaway.game.model.PlayerInput;
+import com.takeaway.game.model.Game.GameStatus;
+import com.takeaway.game.repository.GameRepository;
+import com.takeaway.game.service.GameService;
 
 /**
  * 
@@ -19,7 +24,7 @@ import com.takeaway.game.Game.GameStatus;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GameThreeTest {
+public class GameServiceTest {
 
 	@Mock
 	private GameRepository gameRepository;
@@ -77,7 +82,7 @@ public class GameThreeTest {
 		Game actualGame = gameService.play(playerInput);
 		Assert.assertNotNull(actualGame);
 
-		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.WIN.name());
+		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.FINISH.name());
 		Assert.assertEquals(actualGame.getPlayer1().getOldNumber(), 3);
 		Assert.assertEquals(actualGame.getPlayer1().getResultNumber(), 1);
 
@@ -108,7 +113,7 @@ public class GameThreeTest {
 		actualGame = gameService.play(playerInput);
 		Assert.assertNotNull(actualGame);
 
-		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.WIN.name());
+		Assert.assertEquals(actualGame.getGameStatus().name(), GameStatus.FINISH.name());
 		Assert.assertEquals(actualGame.getPlayer2().getOldNumber(), 3);
 		Assert.assertEquals(actualGame.getPlayer2().getResultNumber(), 1);
 		String operation = "+1";
@@ -117,6 +122,8 @@ public class GameThreeTest {
 				actualGame.getContent());
 
 	}
+	
+	
 
 	private Game createGame(String player1Name, String player2Name) {
 		Game game = new Game(UUID.randomUUID().toString());

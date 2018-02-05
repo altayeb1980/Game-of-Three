@@ -1,4 +1,4 @@
-package com.takeaway.game;
+package com.takeaway.game.model;
 
 import java.io.Serializable;
 
