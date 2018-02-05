@@ -29,7 +29,7 @@ function connect() {
 
 		var socket = new SockJS('/ws');
 		stompClient = Stomp.over(socket);
-		stompClient.connect({}, onConnected, onError);
+		stompClient.connect({}, onConnected, onErrorReceive);
 
 	}
 }
@@ -39,19 +39,19 @@ function onConnected() {
 		playerName : playerName,
 		gameId : gameId
 	};
-
+	stompClient.subscribe('/topic/error/' + playerName, onErrorReceive);
 	stompClient.subscribe('/topic/game', initGame);
 	stompClient.send("/app/game.joinGame", {}, JSON.stringify(playerInput));
 	$('.connecting').addClass('hidden');
 }
 
-function onError(error) {
-	$('.connecting').textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-	$('.connecting').style.color = 'red';
+function onErrorReceive(error) {
+	alert(error.body);
+	$('#send').hide();
+	$('#start').hide();
 }
 
 function play() {
-
 	var playerInput = {
 		playerName : playerName,
 		gameId : gameId
@@ -115,7 +115,7 @@ function initGame(payload) {
 			$('#send').show();
 		}
 		stompClient.subscribe('/topic/game/' + gameId, onJoinGame);
-	}
+	} 
 }
 
 function addConversation(conversationText) {

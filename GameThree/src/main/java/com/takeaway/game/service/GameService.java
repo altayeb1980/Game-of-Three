@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import com.takeaway.game.exceptions.GameNotFoundException;
 import com.takeaway.game.exceptions.GameOperationException;
 import com.takeaway.game.model.Game;
+import com.takeaway.game.model.Game.GameStatus;
 import com.takeaway.game.model.Player;
 import com.takeaway.game.model.PlayerInput;
-import com.takeaway.game.model.Game.GameStatus;
 import com.takeaway.game.repository.GameRepository;
 
 /**
@@ -35,7 +35,6 @@ public class GameService {
 	private final int min = 1;
 	private final int max = 100;
 	private AtomicLong resultAtomicNumber = new AtomicLong();
-	
 
 	@PostConstruct
 	public void init() {
@@ -72,21 +71,21 @@ public class GameService {
 	private Game endGame(Game game, long currentNumber, long nextNumber, long resultNumber, String operation,
 			Player player) {
 		game.setGameStatus(GameStatus.FINISH);
-		game.setContent(player.getName() + " WIN!!!. (" + operation + " to " + currentNumber + " = " + nextNumber
-				+ ")" + " with result number: " + resultNumber);
+		game.setContent(player.getName() + " WIN!!!. (" + operation + " to " + currentNumber + " = " + nextNumber + ")"
+				+ " with result number: " + resultNumber);
 		return game;
 	}
 
 	private void validateGame(PlayerInput playerInput, Game game) {
-		if(game == null) {
-			throw new GameNotFoundException("Invalid gameId");
+		if (game == null) {
+			throw new GameNotFoundException("invalid gameId");
 		}
-	
-		if(playerInput == null || playerInput.getPlayerName() == null) {
+
+		if (playerInput == null || playerInput.getPlayerName() == null) {
 			throw new GameOperationException("player can't be null");
 		}
-		
-		if(playerInput.getPlayerName().equals(game.getCurrentPlayerName())) {
+
+		if (playerInput.getPlayerName().equals(game.getCurrentPlayerName())) {
 			throw new GameOperationException("player can't play twice");
 		}
 	}
@@ -101,15 +100,26 @@ public class GameService {
 	}
 
 	public Game jointGame(String playerName) {
+		validateCloseGame();
 		Game game = getFirstOpenGame();
 		if (game == null) {
 			return createNewGame(playerName);
 		}
+
 		Player player = new Player(playerName);
 		game.setPlayer2(player);
 		game.setGameStatus(GameStatus.JOIN);
 		gameRepository.addOrUpdateGame(game);
 		return game;
+	}
+
+	private void validateCloseGame() {
+		if (!lisGames().isEmpty()) {
+			Game closeGame = lisGames().stream().findFirst().get();
+			if (closeGame.isClose()) {
+				throw new GameOperationException("sorry game close!!");
+			}
+		}
 	}
 
 	public Game getFirstOpenGame() {
@@ -180,4 +190,5 @@ public class GameService {
 			return operation;
 		}
 	}
+
 }

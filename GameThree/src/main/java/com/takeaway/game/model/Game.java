@@ -82,6 +82,10 @@ public class Game implements Serializable{
 		return player1 != null && player2 == null;
 	}
 
+	public boolean isClose() {
+		return player1 != null && player2 != null;
+	}
+	
 	public GameStatus getGameStatus() {
 		return gameStatus;
 	}
