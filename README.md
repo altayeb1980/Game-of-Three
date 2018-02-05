@@ -1,4 +1,7 @@
-                                                    Game of Three
+Game of Three    
+--------------------------------------------------------------------------
+The game build on Spring boot (v1.5.10.RELEASE), and WebSockets                                                 
+                                                    
                   
 Requirements
 ------------------------------------------------
